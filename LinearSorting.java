@@ -32,7 +32,7 @@ class LinearSorting {
             int min = i;
             for (int j = i + 1; j < size; j++)
                 if (less(a[j], a[min])) min = j;
-            exch(a, i, min);
+            exchange(a, i, min);
         }
         show();
     }
@@ -41,7 +41,7 @@ class LinearSorting {
         return v.compareTo(w) < 0;
     }
 
-    void exch(String[] a, int i, int j) {
+    void exchange (String[] a, int i, int j) {
         String strtmp = a[i];
         a[i] = a[j];
         a[j] = strtmp;
