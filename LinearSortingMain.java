@@ -2,8 +2,7 @@ import java.util.Random;
 
 class LinearSortingMain {
     public static void main(String[] args) {
-        LinearSorting ls = new LinearSorting(generateArray());
-        String[] sortedArray = ls.getSortedArray();
+        LinearSorting.getSortedArray(generateArray());
     }
 
     static String[] generateArray() {
