@@ -1,28 +1,31 @@
+import java.util.Formatter;
 import java.util.Random;
 
 class LinearSorting {
-    String[] a, c;
-    int size, length;
+    String[] sorted, notsorted;
+    int size;
 
-    public LinearSorting(int size, int length) {
+    public LinearSorting(int size) {
         this.size = size;
-        this.length = length;
         if (size <= 0) size = 12;
-        a = new String[size];
-        c = new String[size];
-        createarray(size, length);
+        sorted = new String[size];
+        notsorted = new String[size];
+        createarray(size);
+        sort();
     }
 
-    void createarray(int size, int length) {
+    void createarray(int size) {
         String abc = "qwertyuioplkjhgfdsazxcvbnmMNBVCXZASDFGHJKLLPOIUYTREWQ";
         Random rnd = new Random();
         for (int i = 0; i < size; i++) {
             String result = "";
+            int length=rnd.nextInt(7)+1;
             for (int j = 0; j < length; j++) {
                 result += abc.charAt(rnd.nextInt(abc.length()));
             }
-            a[i] = result;
-            c[i] = result;
+            sorted[i] = result;
+            notsorted[i] = result;
+
         }
 
     }
@@ -31,8 +34,8 @@ class LinearSorting {
         for (int i = 0; i < size; i++) {
             int min = i;
             for (int j = i + 1; j < size; j++)
-                if (less(a[j], a[min])) min = j;
-            exchange(a, i, min);
+                if (less(sorted[j], sorted[min])) min = j;
+            exchange(sorted, i, min);
         }
         show();
     }
@@ -41,16 +44,21 @@ class LinearSorting {
         return v.compareTo(w) < 0;
     }
 
-    void exchange (String[] a, int i, int j) {
-        String strtmp = a[i];
-        a[i] = a[j];
-        a[j] = strtmp;
+    void exchange (String[] sorted, int i, int j) {
+        String strtmp = sorted[i];
+       sorted[i] = sorted[j];
+        sorted[j] = strtmp;
     }
 
     void show() {
-        System.out.println("Before and After sorting");
+        System.out.println("Before   and   After sorting");
+
         for (int i = 0; i < size; i++) {
-            System.out.println(c[i] + "   " + a[i]);
+            Formatter fmt=new Formatter();
+            fmt.format("%12s %12s",notsorted[i],sorted[i]);
+            System.out.println(fmt);
+            fmt.close();
         }
+
     }
 }
